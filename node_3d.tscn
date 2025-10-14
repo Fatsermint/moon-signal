@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctjvfmk1d8mry"]
+[gd_scene load_steps=12 format=3 uid="uid://ctjvfmk1d8mry"]
 
 [ext_resource type="PackedScene" uid="uid://joqmm2ap1yxv" path="res://control.tscn" id="1_a202f"]
 [ext_resource type="Script" uid="uid://bi6au868713cj" path="res://sub_viewport_container.gd" id="2_noarx"]
+[ext_resource type="PackedScene" uid="uid://c0m76fgiv7257" path="res://car.tscn" id="3_a0tk4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xowi"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -99,10 +100,6 @@ func _on_body_entered(body: Node3D) -> void:
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noarx")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
-
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 use_collision = true
 size = Vector3(100, 1, 100)
@@ -123,9 +120,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.609447, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04883361, 0)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.846554)
 
 [node name="Area3D" type="Area3D" parent="."]
 script = SubResource("GDScript_4xowi")
@@ -152,9 +146,14 @@ stretch = true
 script = ExtResource("2_noarx")
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
 size = Vector2i(320, 180)
+render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 40, 0)
+
+[node name="Car" parent="." instance=ExtResource("3_a0tk4")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.9515151, 2.5986009, 0)
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
