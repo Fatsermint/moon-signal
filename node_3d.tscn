@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctjvfmk1d8mry"]
+[gd_scene load_steps=14 format=3 uid="uid://ctjvfmk1d8mry"]
 
 [ext_resource type="PackedScene" uid="uid://joqmm2ap1yxv" path="res://control.tscn" id="1_a202f"]
 [ext_resource type="Script" uid="uid://bi6au868713cj" path="res://sub_viewport_container.gd" id="2_noarx"]
 [ext_resource type="PackedScene" uid="uid://c0m76fgiv7257" path="res://car.tscn" id="3_a0tk4"]
+[ext_resource type="PackedScene" uid="uid://ddhhboe0746ov" path="res://phone.tscn" id="4_r3fl7"]
+[ext_resource type="FontFile" uid="uid://b165l5ab5wc0q" path="res://addons/pixelFont-7-8x14-sproutLands.ttf" id="5_jka67"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xowi"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -138,8 +140,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -1152.0
+offset_top = -180.0
+offset_right = -832.0
 grow_horizontal = 0
 grow_vertical = 0
 stretch = true
@@ -155,5 +158,36 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 4
 
 [node name="Car" parent="." instance=ExtResource("3_a0tk4")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.9515151, 2.5986009, 0)
+
+[node name="Phone" parent="." instance=ExtResource("4_r3fl7")]
+offset_left = 771.99994
+offset_top = 433.99997
+offset_right = 772.0
+offset_bottom = 434.0
+scale = Vector2(0.3200006, 0.3200006)
+
+[node name="MarginContainer" type="MarginContainer" parent="Phone"]
+layout_mode = 0
+offset_left = 584.374
+offset_top = -493.74893
+offset_right = 624.374
+offset_bottom = -453.74893
+scale = Vector2(13.124978, 25.749947)
+
+[node name="Label" type="Label" parent="Phone"]
+modulate = Color(0, 0, 0, 1)
+top_level = true
+texture_filter = 1
+layout_mode = 0
+offset_left = 998.0
+offset_top = 307.0
+offset_right = 1044.0
+offset_bottom = 330.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("5_jka67")
+theme_override_font_sizes/font_size = 18
+text = "16:00"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
