@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0m76fgiv7257"]
+
+[ext_resource type="ArrayMesh" uid="uid://dymp7wj1yx72l" path="res://addons/truck.obj" id="1_7822p"]
+[ext_resource type="Script" uid="uid://drxuyonjahyhm" path="res://car.gd" id="1_uoj53"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uoj53"]
+size = Vector3(1.3447266, 1.2275391, 2.777588)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7822p"]
+size = Vector3(1.0571289, 1, 1.1221924)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uoj53"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.52
+
+[sub_resource type="BoxMesh" id="BoxMesh_uoj53"]
+
+[node name="Car2" type="Node3D"]
+
+[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
+script = ExtResource("1_uoj53")
+MAX_STEER = null
+ENGINE_POWER = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4235661)
+mesh = ExtResource("1_7822p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017200232, 0.4306261, -0.24193779)
+shape = SubResource("BoxShape3D_uoj53")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028564453, 0, 2.17322)
+shape = SubResource("BoxShape3D_7822p")
+
+[node name="left" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.5950672, -0.45532143, -0.57073516)
+use_as_traction = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="VehicleBody3D/left"]
+transform = Transform3D(0.011763258, 0.9999308, 0, -0.9999308, 0.011763258, 0, 0, 0, 1, -0.21825719, -0.0365057, 0.023175836)
+radius = 0.5341797
+height = 0.3355713
+sides = 16
+material = SubResource("StandardMaterial3D_uoj53")
+
+[node name="right" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.49812943, -0.44952953, -0.57073516)
+use_as_traction = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="VehicleBody3D/right"]
+transform = Transform3D(0.011763258, 0.9999308, 0, -0.9999308, 0.011763258, 0, 0, 0, 1, -0.014462471, -0.050985336, 0.023175836)
+radius = 0.5341797
+height = 0.3355713
+sides = 16
+material = SubResource("StandardMaterial3D_uoj53")
+
+[node name="VehicleWheel3D3" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.5877943, -0.44999972, 2.2072453)
+use_as_steering = true
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="VehicleBody3D/VehicleWheel3D3"]
+transform = Transform3D(0.011763258, 0.9999308, 0, -0.9999308, 0.011763258, 0, 0, 0, 1, 0.1844238, -0.013114214, 0.024451733)
+radius = 0.5649414
+height = 0.3355713
+sides = 16
+material = SubResource("StandardMaterial3D_uoj53")
+
+[node name="VehicleWheel3D4" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.5705402, -0.44999972, 2.2072453)
+use_as_steering = true
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="VehicleBody3D/VehicleWheel3D4"]
+transform = Transform3D(0.011763258, 0.9999308, 0, -0.9999308, 0.011763258, 0, 0, 0, 1, -0.14220846, -0.013114214, 0.024451733)
+radius = 0.5649414
+height = 0.3355713
+sides = 16
+material = SubResource("StandardMaterial3D_uoj53")
+
+[node name="Camera3D" type="Camera3D" parent="VehicleBody3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, -3.8014765e-08, 0.9005086, 0.4348382, 7.872496e-08, 0.4348382, -0.9005086, 0, 1.9606216, -2.8870416)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.4068618, 0, 0.3271492, 0)
+mesh = SubResource("BoxMesh_uoj53")

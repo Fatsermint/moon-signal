@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctjvfmk1d8mry"]
+[gd_scene load_steps=17 format=3 uid="uid://ctjvfmk1d8mry"]
 
 [ext_resource type="PackedScene" uid="uid://joqmm2ap1yxv" path="res://control.tscn" id="1_a202f"]
+[ext_resource type="Texture2D" uid="uid://cw6ie4j46vb47" path="res://addons/BeachSand.png" id="1_i5arm"]
 [ext_resource type="Script" uid="uid://bi6au868713cj" path="res://sub_viewport_container.gd" id="2_noarx"]
 [ext_resource type="PackedScene" uid="uid://c0m76fgiv7257" path="res://car.tscn" id="3_a0tk4"]
 [ext_resource type="PackedScene" uid="uid://ddhhboe0746ov" path="res://phone.tscn" id="4_r3fl7"]
@@ -19,12 +20,17 @@ sky = SubResource("Sky_a202f")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wc5p8"]
+albedo_texture = ExtResource("1_i5arm")
+uv1_scale = Vector3(0.125, 0.125, 0.125)
+uv1_triplanar = true
+
 [sub_resource type="GDScript" id="GDScript_a0tk4"]
 script/source = "extends CharacterBody3D
 
 @onready var head: Node3D = $Node3D
 @onready var camera: Camera3D = $Node3D/Camera3D
-
+var disabled = false
 var speed = WALK_SPEED
 const SENSITIVITY = 0.003
 const WALK_SPEED = 4
@@ -39,42 +45,56 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+	if disabled == false:	
+		if event is InputEventMouseMotion:
+			head.rotate_y(-event.relative.x * SENSITIVITY)
+			camera.rotate_x(-event.relative.y * SENSITIVITY)
+			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+			
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	if disabled == false:
+		
+		if not is_on_floor():
+			velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	if Input.is_action_just_pressed(\"sprint\") and is_on_floor():
-		if speed == WALK_SPEED:
-			speed = SPRINT_SPEED
-		else:
-			speed = WALK_SPEED
+		if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		if Input.is_action_just_pressed(\"sprint\") and is_on_floor():
+			if speed == WALK_SPEED:
+				speed = SPRINT_SPEED
+			else:
+				speed = WALK_SPEED
 			
 
-	var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
-	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-	else:
-		velocity.x = 0.0
-		velocity.z = 0.0
-	t_bob += delta * velocity.length() * float(is_on_floor())
-	camera.transform.origin = _headbob(t_bob)
-	move_and_slide()
+		var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+		var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = 0.0
+			velocity.z = 0.0
+		t_bob += delta * velocity.length() * float(is_on_floor())
+		camera.transform.origin = _headbob(t_bob)
+		move_and_slide()
 
 func _headbob(time) -> Vector3:
-	var pos = Vector3.ZERO
-	pos.y = sin(time * BOB_FREQ) * BOB_AMP
-	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP 
-	return pos
+	
+		var pos = Vector3.ZERO
+		pos.y = sin(time * BOB_FREQ) * BOB_AMP
+		pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP 
+		return pos
+
+
+func _on_car_to_truck() -> void:
+	disabled = true
+	print(\"to car\")
+
+
+func _on_car_out_truck() -> void:
+	disabled = false
+	print(\"e\")
 "
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_r3fl7"]
@@ -90,12 +110,18 @@ script/source = "extends Area3D
 
 
 func _on_body_entered(body: Node3D) -> void:
-	print(\"You Died\")
-	Engine.time_scale = 0
-	control.visible = true
+	if body.get_parent().name == \"CharacterBody3D\":
+		print(\"You Died\")
+		Engine.time_scale = 0
+		control.visible = true
+	else:
+		pass
 "
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_a202f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i5arm"]
+size = Vector3(9.301636, 5.582489, 6.121155)
 
 [node name="Node3D" type="Node3D"]
 
@@ -103,10 +129,13 @@ func _on_body_entered(body: Node3D) -> void:
 environment = SubResource("Environment_noarx")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 use_collision = true
-size = Vector3(100, 1, 100)
+size = Vector3(200, 20, 500)
+material = SubResource("StandardMaterial3D_wc5p8")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+collision_layer = 3
 script = SubResource("GDScript_a0tk4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
@@ -122,6 +151,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.609447, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04883361, 0)
+current = true
 
 [node name="Area3D" type="Area3D" parent="."]
 script = SubResource("GDScript_4xowi")
@@ -156,9 +186,6 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 40, 0)
 
-[node name="Car" parent="." instance=ExtResource("3_a0tk4")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.9515151, 2.5986009, 0)
-
 [node name="Phone" parent="." instance=ExtResource("4_r3fl7")]
 offset_left = 771.99994
 offset_top = 433.99997
@@ -190,4 +217,33 @@ text = "16:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.679901, 15.578114)
+
+[node name="Car" parent="Node3D" instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.0099878, 1.2855644)
+collision_mask = 3
+mass = 400.0
+ENGINE_POWER = 8000
+
+[node name="Area3D" type="Area3D" parent="Node3D/Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79332256, -1.2855644)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Car/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35837746, 0.68363476, 6.6343193)
+shape = SubResource("BoxShape3D_i5arm")
+
+[node name="BackUp" type="Camera3D" parent="Node3D/Car"]
+transform = Transform3D(-1, 2.344397e-08, -1.3597301e-07, -3.8014765e-08, 0.9005086, 0.4348382, 1.326392e-07, 0.4348382, -0.9005086, 0, 6.4994497, -12.179335)
+
+[node name="Pov" type="Camera3D" parent="Node3D/Car"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.85030365, 4.9050274)
+
+[node name="FrontUp" type="Camera3D" parent="Node3D/Car"]
+transform = Transform3D(1, 0, 0, 0, 0.96388656, 0.26631323, 0, -0.26631323, 0.96388656, 0, 6.250476, 7.3055954)
+
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="outTruck" from="Node3D/Car" to="CharacterBody3D" method="_on_car_out_truck"]
+[connection signal="toTruck" from="Node3D/Car" to="CharacterBody3D" method="_on_car_to_truck"]
+[connection signal="body_entered" from="Node3D/Car/Area3D" to="Node3D/Car" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Node3D/Car/Area3D" to="Node3D/Car" method="_on_area_3d_body_exited"]
