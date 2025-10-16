@@ -14,16 +14,16 @@ grow_vertical = 2
 modulate = Color(0.48570347, 0.48570353, 0.48570347, 1)
 layout_mode = 0
 offset_left = 185.0
-offset_top = -984.0
+offset_top = -403.0
 offset_right = 1518.0
-offset_bottom = 1016.0
+offset_bottom = 1597.0
 texture = ExtResource("1_lnqov")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 1107.0
-offset_top = -493.99994
+offset_top = 87.0
 offset_right = 2440.0
-offset_bottom = 1506.0
+offset_bottom = 2087.0
 scale = Vector2(-0.392, 0.515)
 color = Color(0.9691369, 0.9691369, 0.9691368, 1)
