@@ -42,7 +42,7 @@ var highused = false
 var policeused = false
 var smokinused = false
 var normalused = false
-
+var delete = 0
 func _ready() -> void:
 	timer.start()
 	randomJohn = randi_range(1,4)
@@ -217,6 +217,8 @@ func _process(delta: float) -> void:
 			NewMessage.position.y = nextmessagepos
 			print(messagesGeneated)
 			randommessage = randi_range(0,19)
+			if delete == 4:
+				NewMessage.get_parent().get_children()
 		else:
 			pass
 func _on_back_button_pressed() -> void:
@@ -224,6 +226,7 @@ func _on_back_button_pressed() -> void:
 	messages.visible = false
 	App.visible = true
 	Scrolltext.visible = false
+	
 	if messagetohigh >= 0.9:
 		high.visible = true
 	if messagetopolice >= 0.9:
@@ -234,22 +237,25 @@ func _on_back_button_pressed() -> void:
 		normal.visible = true
 	if messagesopen == 1:
 		highlabel.text = "john"
-		
+		delete = 1
 		
 		messagetohigh = 0
 		highused = true
 	if messagesopen == 2:
 		policelabel.text = "police"
+		delete = 2
 		
 		messagetopolice = 0
 		policeused = true
 	if messagesopen == 3:
 		messagetosmokin = 0
 		smokinlabel.text = "smokin"
+		delete = 3
 		
 		smokinused = true
 	if messagesopen == 4:
 		messagetonormal = 0
+		delete = 4
 		normalused = true
 		normallabel.text = "Normal"
 	police.visible = true
