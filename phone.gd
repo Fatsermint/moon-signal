@@ -7,11 +7,15 @@ extends Control
 
 @onready var texture_rect: TextureRect = $MarginContainer8/TextureRect
 @onready var margin_container_9: MarginContainer = $MarginContainer9
+@onready var car: VehicleBody3D = $"../Node3D/Car"
+@onready var player: CharacterBody3D = $"../CharacterBody3D"
 
 var isphone
 var app_mode = 0 #0 = home, 1 = signal
 var value = 1
-
+var posy = 0
+var posx = 0
+var posz = 0
 enum AppMode {
 	HOME,
 	SIGNAL
@@ -48,3 +52,20 @@ func _on_button_pressed() -> void:
 func _on_home_button_pressed() -> void:
 	app_mode = AppMode.HOME
 	
+
+
+func _on_truck_button_pressed() -> void:
+	print("carspawn")
+	posx = player.position.x + 20
+	posy = player.position.y + 20
+	posz = player.position.z 
+	car.position = Vector3(posx, posy, posz)
+	
+	
+	
+	
+	
+
+
+func _on_button_mouse_entered() -> void:
+	print("eeaaa")

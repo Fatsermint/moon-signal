@@ -349,6 +349,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 
 [node name="MarginContainer3" type="MarginContainer" parent="Phone"]
+z_index = 4
 texture_filter = 1
 layout_direction = 4
 layout_mode = 0
@@ -356,14 +357,15 @@ offset_left = 868.74835
 offset_top = 437.49918
 offset_right = 8840.748
 offset_bottom = 8409.499
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.019982444, 0.02)
 
 [node name="Button" type="Button" parent="Phone/MarginContainer3"]
-modulate = Color(1, 1, 1, 0.16078432)
+self_modulate = Color(1, 1, 1, 0.22352941)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 
 [node name="TextureRect" type="TextureRect" parent="Phone/MarginContainer3"]
+z_index = -4
 layout_mode = 2
 texture = ExtResource("6_jsk3o")
 
@@ -374,6 +376,7 @@ offset_top = 187.49973
 offset_right = 899.6238
 offset_bottom = 261.4997
 scale = Vector2(1.5000296, 1.5000296)
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Phone/MarginContainer"]
 layout_mode = 2
@@ -389,6 +392,7 @@ offset_top = 559.37396
 offset_right = 984.74835
 offset_bottom = 599.37396
 scale = Vector2(1.36479, 1.2500148)
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Phone/MarginContainer4"]
 texture_filter = 1
@@ -407,6 +411,7 @@ offset_top = 559.37396
 offset_right = 724.87384
 offset_bottom = 599.37396
 scale = Vector2(1.4342812, 1.224264)
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Phone/MarginContainer5"]
 texture_filter = 1
@@ -428,6 +433,7 @@ script = ExtResource("8_imku0")
 
 [node name="ColorRect" type="ColorRect" parent="Phone/MarginContainer6"]
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.31061712, 0.31061712, 0.3106171, 1)
 
 [node name="High" type="ColorRect" parent="Phone/MarginContainer6/ColorRect"]
@@ -435,6 +441,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(1.0229293, 0.12751642)
+mouse_filter = 1
 color = Color(0.1882353, 0.1882353, 0.1882353, 0.56078434)
 
 [node name="TextureRect" type="TextureRect" parent="Phone/MarginContainer6/ColorRect/High"]
@@ -454,7 +461,7 @@ offset_bottom = 35.32173
 scale = Vector2(0.10423761, 0.81043476)
 theme_override_fonts/font = ExtResource("5_jka67")
 theme_override_font_sizes/font_size = 18
-text = " John"
+text = " Bob"
 
 [node name="Button" type="Button" parent="Phone/MarginContainer6/ColorRect/High"]
 modulate = Color(1, 1, 1, 0)
@@ -490,7 +497,7 @@ offset_bottom = 35.32173
 scale = Vector2(0.10423761, 0.73461795)
 theme_override_fonts/font = ExtResource("5_jka67")
 theme_override_font_sizes/font_size = 18
-text = "Smokin "
+text = " Patrick"
 
 [node name="Button" type="Button" parent="Phone/MarginContainer6/ColorRect/Smokin"]
 modulate = Color(1, 1, 1, 0)
@@ -526,7 +533,7 @@ offset_bottom = 35.32173
 scale = Vector2(0.10423761, 0.7033506)
 theme_override_fonts/font = ExtResource("5_jka67")
 theme_override_font_sizes/font_size = 18
-text = "normal "
+text = " henry"
 
 [node name="Button" type="Button" parent="Phone/MarginContainer6/ColorRect/Normal"]
 modulate = Color(1, 1, 1, 0)
@@ -562,7 +569,7 @@ offset_bottom = 35.32173
 scale = Vector2(0.10423761, 0.81043476)
 theme_override_fonts/font = ExtResource("5_jka67")
 theme_override_font_sizes/font_size = 18
-text = "Police "
+text = " lucas"
 
 [node name="Button" type="Button" parent="Phone/MarginContainer6/ColorRect/Police"]
 modulate = Color(1, 1, 1, 0)
@@ -607,10 +614,14 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7154003, 0.22610535)
 theme_override_fonts/font = ExtResource("5_jka67")
-theme_override_font_sizes/font_size = 72
-text = "auto"
+theme_override_font_sizes/font_size = 54
+text = "Bruh."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="foo" type="Control" parent="Phone/MarginContainer6/ColorRect/Messages/VBoxContainer"]
+layout_mode = 2
+accessibility_name = "foo"
 
 [node name="Container" type="MarginContainer" parent="Phone/MarginContainer6/ColorRect"]
 visible = false
@@ -675,6 +686,7 @@ offset_top = 421.875
 offset_right = 1518.0
 offset_bottom = 1189.875
 scale = Vector2(0.075, 0.075)
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Phone/MarginContainer8"]
 visible = false
@@ -833,9 +845,16 @@ libraries = {
 
 [node name="Node3D3" parent="." instance=ExtResource("17_i0g27")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.310768, 0)
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.80277467, 0)
+size = Vector3(200, 1, 200)
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="pressed" from="Phone/MarginContainer2/Button" to="Phone" method="_on_button_pressed"]
+[connection signal="mouse_entered" from="Phone/MarginContainer3/Button" to="Phone" method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Phone/MarginContainer3/Button" to="Phone" method="_on_truck_button_pressed"]
 [connection signal="pressed" from="Phone/MarginContainer6/ColorRect/High/Button" to="Phone/MarginContainer6" method="_on_high_button_pressed"]
 [connection signal="pressed" from="Phone/MarginContainer6/ColorRect/Smokin/Button" to="Phone/MarginContainer6" method="_on_somkin_button_pressed"]
 [connection signal="pressed" from="Phone/MarginContainer6/ColorRect/Normal/Button" to="Phone/MarginContainer6" method="_on_normal_button_pressed"]

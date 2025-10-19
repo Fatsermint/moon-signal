@@ -1,6 +1,5 @@
 extends MarginContainer
 
-
 @onready var timer: Timer = $Timer
 @onready var high: ColorRect = $ColorRect/High
 @onready var police: ColorRect = $ColorRect/Police
@@ -30,9 +29,9 @@ var messagetopolice = 0
 var messagetosmokin = 0
 var messagetonormal = 0
 var messagelistfromsmokin = ["Man, I’ve been waitin’ \n forever.", "Signal’s slower than \n my smoke.", "Yo, what’s the holdup?", "Still no signal? Figures.", "Bro, I could’ve had \n a nap.", "Come on, I’m burnin’ \n daylight.", "You movin’ or chillin’?", "Late again, huh?", "I could’ve rolled two\n by now.", "You’re slower than \nmy lighter.", "Guess I’ll light \nanother one.", "This delay’s killin’\n my vibe.", "You drive like you’re\n dreamin’.", "Bro, did you get \nlost again?", "Signal’s takin’ the \nscenic route.", "Don’t rush, but \nhurry up.", "Been sittin’ here \ntoo long.", "Still smokin’, \nstill waitin’.", "That signal’s ghostin’\n me.", "You movin’ in slow\n motion, dude."]
-var messagelistfromnormal = ["Where’s my signal?", "Still waiting…", "Late again?", "Clock’s ticking!", "You’re behind schedule!", "This delay costs me!", "You missed the window!", "What’s taking so long?", "You promised on time!", "My systems are down!", "Too slow!", "Not again…", "Unacceptable delay!", "That’s not service.", "You’re off schedule!", "I’m losing trust.", "You call this reliable?", "Come on already!", "Tick-tock, driver.", "Late delivery = no deal."]
+var messagelistfromnormal = ["Where’s my signal?", "Still waiting…", "Late again?", "Clock’s ticking!", "You’re behind schedule!", "This delay costs me!", "You missed the window!", "What’s taking so long?", "You promised on time!", "My systems are down!", "Too slow!", "Not again…", "Unacceptable delay!", "That’s not service.", "You’re off schedule!", "I’m losing trust.", "You call this reliable?", "Come on already!", "Tick-tock, driver.", "Late delivery = angry\n customer"]
 var messagelistfromhigh = ["Whoa… did time stop?", "Is the signal lost \nin space?", "I swear it was \njust here.", "Everything’s blinking\n weird.", "Did you deliver it to\n another dimension?", "My vibes are off… \nno signal yet.", "Maybe it already\n arrived… somewhere.", "Bro, the signal’s\n trippin’ out.", "I can feel it… but\n it’s not here.", "Whoa… late? Or\n am I early?", "Reality’s buffering\n again.", "Signal’s taking the\n scenic route.", "Did you see it\n fly by?", "Feels like a glitch\n in the universe.", "Wait… what was\n I waiting for?", "Maybe it’s invisible\n now.", "The air feels \nlaggy today.", "Signal’s totally \nvibed out.", "Time’s just \nmelting, man.", "Whoa… that’s deep\n delay."]
-var messagelistfrompolice = ["You’re off schedule, driver.", "That signal was due five minutes ago.", "This delay’s unacceptable.", "Do you know what a deadline is?", "That’s a clear violation.", "I expect punctuality, always.", "You’ll be written up for this.", "Next time, double-check your route.", "Keep your clock synced, driver.", "Late again? That’s noted.", "Your timing report looks bad.", "Consider this a warning.", "You’re losing reliability status.", "Deliver on time or face review.", "Maintain schedule discipline.", "I don’t tolerate delays.", "Your ETA was wrong again.", "Get your act together.", "Do it by the book next run.", "Not on my watch, driver."]
+var messagelistfrompolice = ["You’re off schedule,\n driver.", "That signal was due\n five minutes ago.", "This delay’s \nunacceptable.", "Do you know what \na deadline is?", "That’s a clear \nviolation.", "I expect punctuality,\n always.", "You’ll be written\n up for this.", "Next time,\n double-check\n your route.", "Keep your clock \nsynced, driver.", "Late again?\n That’s noted.", "Your timing report\n looks bad.", "Consider this a\n warning.", "You’re losing reliability\n status.", "Deliver on time or\n face review.", "Maintain schedule\n discipline.", "I don’t tolerate delays.", "Your ETA was wrong again.", "Get your act together.", "Do it by the book\n next run.", "Not on my watch,\n driver."]
 var messagesopen = 0 # 1 high 2 police 3 smokin 4 normal
 var randommessage
 var totalmessage
@@ -43,6 +42,8 @@ var policeused = false
 var smokinused = false
 var normalused = false
 var delete = 0
+
+
 func _ready() -> void:
 	timer.start()
 	randomJohn = randi_range(1,4)
@@ -136,29 +137,36 @@ func _on_high_button_pressed() -> void:
 	messages.visible = true
 	highcontainer.visible = true
 func _process(delta: float) -> void:
+	if delete == 1 or delete == 2 or delete == 3 or delete == 4:
+		pass
 	if messagesopen == 1: 
+		$ColorRect/Container/High/Label.text = "a" #here john name ------------------------
 		if messagesGeneated >= 1.1:
+			messageblank.get_child(0).text = messagelistfromhigh[randommessage]
+			randommessage = randi_range(0,19)
 			messageblank.visible = true
 			var NewMessage = messageblank.duplicate()
 			var label = NewMessage.get_child(0)
 			messageblank.get_parent().add_child(NewMessage)
 			NewMessage.name = "foo"
 			label.visible = true
-			print(label.position)
 			label.text = messagelistfromhigh[randommessage]
-			print(label.text)
+			
 			NewMessage.visible = true
 			messagesGeneated -= 1
 			highcontainer.visible = true
 			nextmessagepos -=  100
 			NewMessage.position.y = nextmessagepos
-			print(messagesGeneated)
+			
 			randommessage = randi_range(0,19)
 			
 		else:
 			pass
-	if messagesopen == 3: 
+	if messagesopen == 3:
+		$ColorRect/Container/High/Label.text = " bob"
 		if messagesGeneated >= 1.1:
+			messageblank.get_child(0).text = messagelistfromsmokin[randommessage]
+			randommessage = randi_range(0,19)
 			messageblank.visible = true
 			var NewMessage = messageblank.duplicate()
 			var label = NewMessage.get_child(0)
@@ -179,7 +187,11 @@ func _process(delta: float) -> void:
 		else:
 			pass
 	if messagesopen == 2: 
+		$ColorRect/Container/High/Label.text = " lucas"
+		
 		if messagesGeneated >= 1.1:
+			messageblank.get_child(0).text = messagelistfrompolice[randommessage]
+			randommessage = randi_range(0,19)
 			messageblank.visible = true
 			var NewMessage = messageblank.duplicate()
 			var label = NewMessage.get_child(0)
@@ -200,7 +212,11 @@ func _process(delta: float) -> void:
 		else:
 			pass
 	if messagesopen == 4: 
+		$ColorRect/Container/High/Label.text = " henry"
+		
 		if messagesGeneated >= 1.1:
+			messageblank.get_child(0).text = messagelistfromnormal[randommessage]
+			randommessage = randi_range(0,19)
 			messageblank.visible = true
 			var NewMessage = messageblank.duplicate()
 			var label = NewMessage.get_child(0)
@@ -217,10 +233,16 @@ func _process(delta: float) -> void:
 			NewMessage.position.y = nextmessagepos
 			print(messagesGeneated)
 			randommessage = randi_range(0,19)
-			if delete == 4:
-				NewMessage.get_parent().get_children()
+			
 		else:
 			pass
+			
+	if messagesopen == 0:
+		if messageblank.get_parent().get_child(1):
+			messageblank.get_parent().get_child(1).queue_free()
+			print("deleted")
+		else:
+			print("notdeletdd")
 func _on_back_button_pressed() -> void:
 	highcontainer.visible = false
 	messages.visible = false
@@ -264,7 +286,6 @@ func _on_back_button_pressed() -> void:
 	normal.visible = true
 
 	messagesopen = 0
-
 
 func _on_somkin_button_pressed() -> void:
 	messages.visible = true
