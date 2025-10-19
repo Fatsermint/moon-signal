@@ -1008,6 +1008,7 @@ shadow_mesh = SubResource("ArrayMesh_6ir3t")
 [node name="VehicleBody3D" type="VehicleBody3D"]
 collision_layer = 0
 script = ExtResource("1_uoj53")
+ENGINE_POWER = 90000
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(145.24472, 0, 0, 0, -7.900213e-06, 165.56345, 0, -180.73578, -7.2370076e-06, -0.108129375, 1.7721894, 1.8739448)

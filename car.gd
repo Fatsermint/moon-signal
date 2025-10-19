@@ -41,8 +41,8 @@ func _process(delta: float) -> void:
 func  _physics_process(delta: float) -> void:
 	
 	if oncar == true:
-		steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 90)
-		engine_force = Input.get_axis("down", "up") * ENGINE_POWER * 5
+		steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 100)
+		engine_force = Input.get_axis("down", "up") * ENGINE_POWER * 50
 		
 		car.center_of_mass_mode =RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
 		if angular_velocity.length() > 10:

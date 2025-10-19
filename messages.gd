@@ -13,73 +13,94 @@ extends MarginContainer
 @onready var labeltext: Label = $"../MarginContainer9/Label"
 @onready var magtext: MarginContainer = $"../MarginContainer9"
 @onready var red_dot: TextureRect = $"../MarginContainer8/TextureRect"
-@onready var text: TextureRect = $ColorRect/VBoxContainer/TextureRect3
-@onready var Scrolltext: VBoxContainer = $ColorRect/VBoxContainer
+@onready var Scrolltext = $ColorRect/Messages
+@onready var messageblank: TextureRect = $ColorRect/Messages/VBoxContainer/TextureRect3
+@onready var messagelabel: Label = $ColorRect/Messages/VBoxContainer/TextureRect3/Label
+@onready var basement4kids: VBoxContainer = $ColorRect/Messages/VBoxContainer
+@onready var highcontainer: MarginContainer = $ColorRect/Container
+@onready var messages: Control = $ColorRect/Messages
+
 @onready var App: MarginContainer = self
-
-
+var messagesGeneated = 0
+var nextmessagepos = 100
 var randomJohn
 var messaageloc = 0
 var messagetohigh = 0
 var messagetopolice = 0
 var messagetosmokin = 0
 var messagetonormal = 0
-var messagelistfromhigh = ["ra", "a", 5]
+var messagelistfromsmokin = ["Man, I’ve been waitin’ \n forever.", "Signal’s slower than \n my smoke.", "Yo, what’s the holdup?", "Still no signal? Figures.", "Bro, I could’ve had \n a nap.", "Come on, I’m burnin’ \n daylight.", "You movin’ or chillin’?", "Late again, huh?", "I could’ve rolled two\n by now.", "You’re slower than \nmy lighter.", "Guess I’ll light \nanother one.", "This delay’s killin’\n my vibe.", "You drive like you’re\n dreamin’.", "Bro, did you get \nlost again?", "Signal’s takin’ the \nscenic route.", "Don’t rush, but \nhurry up.", "Been sittin’ here \ntoo long.", "Still smokin’, \nstill waitin’.", "That signal’s ghostin’\n me.", "You movin’ in slow\n motion, dude."]
+var messagelistfromnormal = ["Where’s my signal?", "Still waiting…", "Late again?", "Clock’s ticking!", "You’re behind schedule!", "This delay costs me!", "You missed the window!", "What’s taking so long?", "You promised on time!", "My systems are down!", "Too slow!", "Not again…", "Unacceptable delay!", "That’s not service.", "You’re off schedule!", "I’m losing trust.", "You call this reliable?", "Come on already!", "Tick-tock, driver.", "Late delivery = no deal."]
+var messagelistfromhigh = ["Whoa… did time stop?", "Is the signal lost \nin space?", "I swear it was \njust here.", "Everything’s blinking\n weird.", "Did you deliver it to\n another dimension?", "My vibes are off… \nno signal yet.", "Maybe it already\n arrived… somewhere.", "Bro, the signal’s\n trippin’ out.", "I can feel it… but\n it’s not here.", "Whoa… late? Or\n am I early?", "Reality’s buffering\n again.", "Signal’s taking the\n scenic route.", "Did you see it\n fly by?", "Feels like a glitch\n in the universe.", "Wait… what was\n I waiting for?", "Maybe it’s invisible\n now.", "The air feels \nlaggy today.", "Signal’s totally \nvibed out.", "Time’s just \nmelting, man.", "Whoa… that’s deep\n delay."]
+var messagelistfrompolice = ["You’re off schedule, driver.", "That signal was due five minutes ago.", "This delay’s unacceptable.", "Do you know what a deadline is?", "That’s a clear violation.", "I expect punctuality, always.", "You’ll be written up for this.", "Next time, double-check your route.", "Keep your clock synced, driver.", "Late again? That’s noted.", "Your timing report looks bad.", "Consider this a warning.", "You’re losing reliability status.", "Deliver on time or face review.", "Maintain schedule discipline.", "I don’t tolerate delays.", "Your ETA was wrong again.", "Get your act together.", "Do it by the book next run.", "Not on my watch, driver."]
+var messagesopen = 0 # 1 high 2 police 3 smokin 4 normal
 var randommessage
 var totalmessage
 var textOpen = 0
 var pingmessages = 0
+var highused = false
+var policeused = false
+var smokinused = false
+var normalused = false
+
 func _ready() -> void:
-	print(messagelistfromhigh)
 	timer.start()
 	randomJohn = randi_range(1,4)
-	randommessage = randi_range(1,2)
+	randommessage = randi_range(0,19)
 	
 func _on_timer_timeout() -> void:
 	
 	if randomJohn == 1:
-		if textOpen == 0:
+		if messagesopen == 0:
 			high.visible = true
+		
+			
 		if messagetohigh == 0:
-			high.position.y = messaageloc
-			messaageloc += 4.955
+			if highused == false:
+				high.position.y = messaageloc
+				messaageloc += 4.955
 		messagetohigh += 1
-		highlabel.text = "High john: " + str(messagetohigh) + " New Message"
+		highlabel.text = "john: " + str(messagetohigh) + " New Message"
 
 	if randomJohn == 2:
-		if textOpen == 0:
+		if messagesopen == 0:
 			police.visible = true
 		if messagetopolice == 0:
-			police.position.y = messaageloc
-			messaageloc += 4.955
+			if policeused == false:
+				police.position.y = messaageloc
+				messaageloc += 4.955
 			messagetopolice = 1
 		else:
 			messagetopolice += 1
-		policelabel.text = "High john : " + str(messagetopolice) + " New Message"
+		policelabel.text = "police : " + str(messagetopolice) + " New Message"
 		
 	if randomJohn == 3:
-		if textOpen == 0:
+		if messagesopen == 0:
 			smokin.visible = true
 		if messagetosmokin == 0:
-			smokin.position.y = messaageloc
-			messaageloc += 4.955
+			if smokinused == false:
+				
+				smokin.position.y = messaageloc
+				messaageloc += 4.955
 			messagetosmokin = 1
 			
 		else:
 			messagetosmokin += 1
-		smokinlabel.text = "High john : " + str(messagetosmokin) + " New Message"
+		smokinlabel.text = "smokin : " + str(messagetosmokin) + " New Message"
 	if randomJohn == 4:
-		if textOpen == 0:
+		if messagesopen == 0:
 			normal.visible = true
+
 		
 		if messagetonormal == 0:
-			normal.position.y = messaageloc
-			messaageloc += 4.955
+			if normalused == false:
+				normal.position.y = messaageloc
+				messaageloc += 4.955
 			messagetonormal = 1
 			
 		else:
 			messagetonormal += 1
-		normallabel.text = "High john : " + str(messagetonormal) + " New Message"
+		normallabel.text = "Normal : " + str(messagetonormal) + " New Message"
 		
 		
 	totalmessage = messagetohigh + messagetonormal + messagetopolice + messagetosmokin
@@ -97,10 +118,194 @@ func _on_home_button_pressed() -> void:
 	if App.visible == true:
 		pingmessages = 0
 		App.visible = false
+		Scrolltext.visible = false
+		
 func _on_high_button_pressed() -> void:
+	messages.visible = true
 	textOpen = 1
 	high.visible = false
 	police.visible = false
 	smokin.visible = false
 	normal.visible = false
-	Scrolltext.visible = true
+	Scrolltext.visible = false
+	highcontainer.visible = false
+	print("button pressed")
+	messagesGeneated = messagetohigh
+	messagesopen = 1
+	App.visible = true
+	messages.visible = true
+	highcontainer.visible = true
+func _process(delta: float) -> void:
+	if messagesopen == 1: 
+		if messagesGeneated >= 1.1:
+			messageblank.visible = true
+			var NewMessage = messageblank.duplicate()
+			var label = NewMessage.get_child(0)
+			messageblank.get_parent().add_child(NewMessage)
+			NewMessage.name = "foo"
+			label.visible = true
+			print(label.position)
+			label.text = messagelistfromhigh[randommessage]
+			print(label.text)
+			NewMessage.visible = true
+			messagesGeneated -= 1
+			highcontainer.visible = true
+			nextmessagepos -=  100
+			NewMessage.position.y = nextmessagepos
+			print(messagesGeneated)
+			randommessage = randi_range(0,19)
+			
+		else:
+			pass
+	if messagesopen == 3: 
+		if messagesGeneated >= 1.1:
+			messageblank.visible = true
+			var NewMessage = messageblank.duplicate()
+			var label = NewMessage.get_child(0)
+			messageblank.get_parent().add_child(NewMessage)
+			NewMessage.name = "foo"
+			label.visible = true
+			print(label.position)
+			label.text = messagelistfromsmokin[randommessage]
+			print(label.text)
+			NewMessage.visible = true
+			messagesGeneated -= 1
+			highcontainer.visible = true
+			nextmessagepos -=  100
+			NewMessage.position.y = nextmessagepos
+			print(messagesGeneated)
+			randommessage = randi_range(0,19)
+			
+		else:
+			pass
+	if messagesopen == 2: 
+		if messagesGeneated >= 1.1:
+			messageblank.visible = true
+			var NewMessage = messageblank.duplicate()
+			var label = NewMessage.get_child(0)
+			messageblank.get_parent().add_child(NewMessage)
+			NewMessage.name = "foo"
+			label.visible = true
+			print(label.position)
+			label.text = messagelistfrompolice[randommessage]
+			print(label.text)
+			NewMessage.visible = true
+			messagesGeneated -= 1
+			highcontainer.visible = true
+			nextmessagepos -=  100
+			NewMessage.position.y = nextmessagepos
+			print(messagesGeneated)
+			randommessage = randi_range(0,19)
+			
+		else:
+			pass
+	if messagesopen == 4: 
+		if messagesGeneated >= 1.1:
+			messageblank.visible = true
+			var NewMessage = messageblank.duplicate()
+			var label = NewMessage.get_child(0)
+			messageblank.get_parent().add_child(NewMessage)
+			NewMessage.name = "foo"
+			label.visible = true
+			print(label.position)
+			label.text = messagelistfromnormal[randommessage]
+			print(label.text)
+			NewMessage.visible = true
+			messagesGeneated -= 1
+			highcontainer.visible = true
+			nextmessagepos -=  100
+			NewMessage.position.y = nextmessagepos
+			print(messagesGeneated)
+			randommessage = randi_range(0,19)
+		else:
+			pass
+func _on_back_button_pressed() -> void:
+	highcontainer.visible = false
+	messages.visible = false
+	App.visible = true
+	Scrolltext.visible = false
+	if messagetohigh >= 0.9:
+		high.visible = true
+	if messagetopolice >= 0.9:
+		police.visible = true
+	if messagetosmokin >= 0.9:
+		smokin.visible = true
+	if messagetonormal >= 0.9:
+		normal.visible = true
+	if messagesopen == 1:
+		highlabel.text = "john"
+		
+		
+		messagetohigh = 0
+		highused = true
+	if messagesopen == 2:
+		policelabel.text = "police"
+		
+		messagetopolice = 0
+		policeused = true
+	if messagesopen == 3:
+		messagetosmokin = 0
+		smokinlabel.text = "smokin"
+		
+		smokinused = true
+	if messagesopen == 4:
+		messagetonormal = 0
+		normalused = true
+		normallabel.text = "Normal"
+	police.visible = true
+	high.visible = true
+	smokin.visible = true
+	normal.visible = true
+
+	messagesopen = 0
+
+
+func _on_somkin_button_pressed() -> void:
+	messages.visible = true
+	textOpen = 3
+	high.visible = false
+	police.visible = false
+	smokin.visible = false
+	normal.visible = false
+	Scrolltext.visible = false
+	highcontainer.visible = false
+	print("button pressed")
+	messagesGeneated = messagetosmokin
+	messagesopen = 3
+	App.visible = true
+	messages.visible = true
+	highcontainer.visible = true
+
+
+func _on_normal_button_pressed() -> void:
+	messages.visible = true
+	textOpen = 4
+	high.visible = false
+	police.visible = false
+	smokin.visible = false
+	normal.visible = false
+	Scrolltext.visible = false
+	highcontainer.visible = false
+	print("button pressed")
+	messagesGeneated = messagetonormal
+	messagesopen = 4
+	App.visible = true
+	messages.visible = true
+	highcontainer.visible = true
+
+
+func _on_police_button_pressed() -> void:
+	messages.visible = true
+	textOpen = 2
+	high.visible = false
+	police.visible = false
+	smokin.visible = false
+	normal.visible = false
+	Scrolltext.visible = false
+	highcontainer.visible = false
+	print("button pressed")
+	messagesGeneated = messagetopolice
+	messagesopen = 2
+	App.visible = true
+	messages.visible = true
+	highcontainer.visible = true

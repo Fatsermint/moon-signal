@@ -1,0 +1,272 @@
+# Blender 4.0.1 MTL File: 'Building_Rooftop_Props_Trial_Pack.blend'
+# www.blender.org
+
+newmtl AirConditioner_Large_01_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_aircon_l_05.dds
+map_d C:/prop_aircon_l_05.dds
+
+newmtl AirConditioner_Large_01_mat_02
+Ns 360.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl AirConditioner_Large_01_mat_03
+Ns 360.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl AirConditioner_Medium_06_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_aircon_m_06.dds
+map_d C:/prop_aircon_m_06.dds
+
+newmtl AirConditioner_Small_05_mat_01
+Ns 360.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl AirConditioner_Small_05_mat_02
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd C:/prop_aircon_s_03b.dds
+map_d C:/prop_aircon_s_03b.dds
+
+newmtl Antenna_04_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd C:/prop_metal_pole_01.dds
+map_d C:/prop_metal_pole_01.dds
+
+newmtl Antenna_04_mat_02
+Ns 360.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl BillBoard_Frame_05_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_metal_billframe01.dds
+map_d C:/prop_metal_billframe01.dds
+
+newmtl Building_Maintenance_Unit_01_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_bmu_01.dds
+map_d C:/prop_bmu_01.dds
+
+newmtl Building_Maintenance_Unit_01_mat_02
+Ns 360.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl FireEscape_Stairs_01_mat_01
+Ns 360.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl FireEscape_Stairs_01_mat_02
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_firescape_01.dds
+map_d C:/prop_firescape_01.dds
+
+newmtl Radio_Dish_05_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_cellmast_01.dds
+map_d C:/prop_cellmast_01.dds
+
+newmtl Roof_Pipe_05_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_roofpipe_02.dds
+map_d C:/prop_roofpipe_02.dds
+
+newmtl Roof_Vent_20_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_roofvent_14.dds
+map_d C:/prop_roofvent_14.dds
+
+newmtl Satellite_Dish_Large_01_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_satdish_l_01b.dds
+map_d C:/prop_satdish_l_01b.dds
+
+newmtl Satellite_Dish_Small_02_mat_01
+Ns 360.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Satellite_Dish_Small_02_mat_02
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd C:/prop_metal_grey2.dds
+map_d C:/prop_metal_grey2.dds
+
+newmtl Sky_Light_06_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_skylight_02.dds
+map_d C:/prop_skylight_02.dds
+
+newmtl Sky_Light_06_mat_02
+Ns 360.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Solar_Panel_03_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_solarpanel_02.dds
+map_d C:/prop_solarpanel_02.dds
+
+newmtl Solar_Panel_03_mat_02
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_solarpanel_02.dds
+map_d C:/prop_solarpanel_02.dds
+
+newmtl Vent_System_02_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_ventsystem.dds
+map_d C:/prop_ventsystem.dds
+
+newmtl Wall_Vent_04_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_wall_vent_04.dds
+map_d C:/prop_wall_vent_04.dds
+
+newmtl Water_Tower_03_mat_01
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/prop_watertower_03b.dds
+map_d C:/prop_watertower_03b.dds
+
+newmtl Water_Tower_03_mat_02
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_d C:/prop_metal_white_b.dds
