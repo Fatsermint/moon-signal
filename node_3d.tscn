@@ -351,6 +351,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 
 [node name="MarginContainer3" type="MarginContainer" parent="Phone"]
+visible = false
 z_index = 4
 texture_filter = 1
 layout_direction = 4
@@ -388,6 +389,7 @@ theme_override_font_sizes/font_size = 72
 text = "16:00"
 
 [node name="MarginContainer4" type="MarginContainer" parent="Phone"]
+visible = false
 layout_mode = 0
 offset_left = 868.74835
 offset_top = 559.37396
