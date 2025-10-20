@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://ctjvfmk1d8mry"]
+[gd_scene load_steps=47 format=4 uid="uid://ctjvfmk1d8mry"]
 
 [ext_resource type="PackedScene" uid="uid://joqmm2ap1yxv" path="res://control.tscn" id="1_a202f"]
 [ext_resource type="Script" uid="uid://bi6au868713cj" path="res://sub_viewport_container.gd" id="2_noarx"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ccilshlvhkwxu" path="res://terrain.tscn" id="17_i0g27"]
 [ext_resource type="Script" uid="uid://dbnwhja30anev" path="res://ship.gd" id="17_tuemg"]
 [ext_resource type="Texture2D" uid="uid://b8exlvosir7s4" path="res://images/CP_Props_base_cranbearryGray.png" id="19_ealrb"]
+[ext_resource type="Script" uid="uid://bo7xlycuhhack" path="res://tuto.gd" id="20_jsnrv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xowi"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -941,7 +942,7 @@ libraries = {
 }
 
 [node name="Node3D3" parent="." instance=ExtResource("17_i0g27")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.310768, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1354952, -21.310768, 0)
 visible = false
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -1051,6 +1052,9 @@ use_collision = true
 collision_layer = 5
 collision_mask = 5
 mesh = SubResource("PrismMesh_i0g27")
+
+[node name="tuto" type="Node" parent="."]
+script = ExtResource("20_jsnrv")
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="pressed" from="Phone/MarginContainer2/Button" to="Phone" method="_on_button_pressed"]
