@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://ctjvfmk1d8mry"]
+[gd_scene load_steps=46 format=4 uid="uid://ctjvfmk1d8mry"]
 
 [ext_resource type="PackedScene" uid="uid://joqmm2ap1yxv" path="res://control.tscn" id="1_a202f"]
 [ext_resource type="Script" uid="uid://bi6au868713cj" path="res://sub_viewport_container.gd" id="2_noarx"]
@@ -205,10 +205,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_umtsn")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuemg"]
-albedo_color = Color(0.63375676, 0.6337568, 0.63375676, 1)
-metallic = 1.0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0g27"]
 albedo_color = Color(0.23921569, 0.23921569, 0.23921569, 1)
 
@@ -222,45 +218,6 @@ size = Vector3(0.02581358, 0.6531615, 2.8237305)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jsnrv"]
 albedo_color = Color(0.23921569, 0.23921569, 0.23921569, 1)
 metallic = 1.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_tuemg"]
-
-[sub_resource type="Animation" id="Animation_ealrb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_i0g27"]
-resource_name = "info_text"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jsnrv"]
-_data = {
-&"RESET": SubResource("Animation_ealrb"),
-&"info_text": SubResource("Animation_i0g27")
-}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lggff"]
 albedo_texture = ExtResource("19_ealrb")
@@ -308,6 +265,45 @@ shadow_mesh = SubResource("ArrayMesh_jwiyd")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0gvp"]
 albedo_color = Color(0.23921569, 0.23921569, 0.23921569, 1)
 metallic = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_tuemg"]
+
+[sub_resource type="Animation" id="Animation_ealrb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_i0g27"]
+resource_name = "info_text"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jsnrv"]
+_data = {
+&"RESET": SubResource("Animation_ealrb"),
+&"info_text": SubResource("Animation_i0g27")
+}
 
 [sub_resource type="PrismMesh" id="PrismMesh_i0g27"]
 
@@ -841,7 +837,6 @@ script = ExtResource("17_tuemg")
 transform = Transform3D(80.7115, -59.03944, -7.0380497e-06, -5.248212e-13, -1.192093e-05, 100.00001, -59.03945, -80.7115, -9.621561e-06, 49.275078, -0.0043941736, 71.52937)
 mesh = SubResource("ArrayMesh_i0g27")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_tuemg")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Node3D2"]
 transform = Transform3D(215.6996, 0, 0, 0, -6.7172283e-07, 2.5127027, 0, -15.367228, -1.0983372e-07, 49.23544, 0.11655648, 67.36378)
@@ -888,7 +883,7 @@ shape = SubResource("BoxShape3D_ealrb")
 transform = Transform3D(0.0022266032, 7.661532e-08, -0.0040663797, -0.056615707, 0.050500583, -0.030999772, 0.007242581, 0.39476073, 0.0039732144, -0.07033719, -0.35166895, 4.5452332)
 
 [node name="Label3D" type="Label3D" parent="Node3D2/CSGBox3D4"]
-transform = Transform3D(0.35966486, -1.039669e-06, -3.7380486, -1.9673942, -1.2469641e-06, -0.6833633, -7.170132e-08, 28.999996, -1.6339533e-07, -0.023365706, 0.41288155, 12.169228)
+transform = Transform3D(0.4, 0, 4.371139e-08, 1.7484556e-08, 5.732056e-14, -1, 0, 30, 1.9106855e-15, -0.023365706, 0.41288155, 12.169228)
 texture_filter = 0
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(1, 1, 1, 0)
@@ -896,6 +891,23 @@ text = "unLoading station
 "
 font = ExtResource("5_jka67")
 font_size = 18
+
+[node name="Server_Body" type="MeshInstance3D" parent="Node3D2/CSGBox3D4"]
+transform = Transform3D(-4.052987e-08, 0, 0.92721534, 13.0147085, -5.688909e-07, 5.68891e-07, 3.4792326e-06, 79.595566, 1.5208208e-13, -0.027925014, 0.6765954, 1.2260382)
+material_override = SubResource("StandardMaterial3D_lggff")
+mesh = SubResource("ArrayMesh_s0gvp")
+skeleton = NodePath("")
+
+[node name="Server_Body2" type="MeshInstance3D" parent="Node3D2/CSGBox3D4"]
+transform = Transform3D(-4.052987e-08, 0, 0.92721534, 13.0147085, -5.688909e-07, 5.68891e-07, 3.4792326e-06, 79.595566, 1.5208208e-13, -0.0049355626, 0.6765954, 1.2260382)
+material_override = SubResource("StandardMaterial3D_lggff")
+mesh = SubResource("ArrayMesh_s0gvp")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D2/CSGBox3D4"]
+transform = Transform3D(0.0046360767, 0, 0, 0, -2.8444547e-09, -0.06507354, 0, 0.39797783, -1.7396163e-08, -0.0072570443, 0.4819126, -0.06738985)
+size = Vector3(0.83062744, 0.5, 5.5912476)
+material = SubResource("StandardMaterial3D_s0gvp")
 
 [node name="Timer" type="Timer" parent="Node3D2"]
 wait_time = 5.0
@@ -927,23 +939,6 @@ visible_ratio = 0.0
 libraries = {
 &"": SubResource("AnimationLibrary_jsnrv")
 }
-
-[node name="Server_Body" type="MeshInstance3D" parent="Node3D2"]
-transform = Transform3D(-8.742278e-06, 0, 200, 0, 200, 0, -200, 0, -8.742278e-06, 43.764336, 3.1972256, 8.870343)
-material_override = SubResource("StandardMaterial3D_lggff")
-mesh = SubResource("ArrayMesh_s0gvp")
-skeleton = NodePath("")
-
-[node name="Server_Body2" type="MeshInstance3D" parent="Node3D2"]
-transform = Transform3D(-8.742278e-06, 0, 200, 0, 200, 0, -200, 0, -8.742278e-06, 48.723152, 3.1972256, 8.870343)
-material_override = SubResource("StandardMaterial3D_lggff")
-mesh = SubResource("ArrayMesh_s0gvp")
-skeleton = NodePath("")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Node3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.22241, -0.05277455, 11.862079)
-size = Vector3(0.83062744, 0.5, 5.5912476)
-material = SubResource("StandardMaterial3D_s0gvp")
 
 [node name="Node3D3" parent="." instance=ExtResource("17_i0g27")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.310768, 0)
