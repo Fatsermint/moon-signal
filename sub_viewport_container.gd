@@ -22,7 +22,8 @@ func _process(delta: float) -> void:
 			map.position = Vector2(0,0)
 			map.scale = Vector2(3.6,3.6)
 			MapMode = 1
-			camera_3d.position.y = 200
+			camera_3d.position.y = 150
+			
 		else:
 			#smaller
 			map.size = Vector2(320, 180)
@@ -30,7 +31,7 @@ func _process(delta: float) -> void:
 			map.scale = Vector2(1,1)
 			MapMode = 0
 			camera_3d.position.y = 40
-			
+		
 func _on_car_out_truck() -> void:
 	CamMode = 1
 
