@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://ctjvfmk1d8mry"]
+[gd_scene load_steps=41 format=4 uid="uid://ctjvfmk1d8mry"]
 
 [ext_resource type="PackedScene" uid="uid://joqmm2ap1yxv" path="res://control.tscn" id="1_a202f"]
 [ext_resource type="Script" uid="uid://bi6au868713cj" path="res://sub_viewport_container.gd" id="2_noarx"]
@@ -261,14 +261,16 @@ _data = {
 &"info_text": SubResource("Animation_i0g27")
 }
 
+[sub_resource type="PrismMesh" id="PrismMesh_i0g27"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_noarx")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-collision_layer = 131
-collision_mask = 129
+collision_layer = 134
+collision_mask = 135
 script = SubResource("GDScript_a0tk4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
@@ -287,12 +289,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04883361, 0)
 current = true
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_layer = 129
-collision_mask = 129
+collision_layer = 133
+collision_mask = 133
 script = SubResource("GDScript_4xowi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3219805, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5390081, 0)
 shape = SubResource("WorldBoundaryShape3D_a202f")
 
 [node name="Control" parent="." instance=ExtResource("1_a202f")]
@@ -423,6 +425,7 @@ text = "signal"
 horizontal_alignment = 1
 
 [node name="MarginContainer6" type="MarginContainer" parent="Phone"]
+visible = false
 layout_mode = 0
 offset_left = 581.2489
 offset_top = 84.37492
@@ -715,10 +718,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.679901, 15.578114)
 
 [node name="Car" parent="Node3D" instance=ExtResource("3_a0tk4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.31555, 1.2855644)
-collision_mask = 3
+collision_layer = 13
+collision_mask = 12
 mass = 400.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0, 0.2)
 freeze = true
-ENGINE_POWER = 8000
+ENGINE_POWER = 10000
 
 [node name="Area3D" type="Area3D" parent="Node3D/Car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79332256, -1.2855644)
@@ -728,12 +734,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35837746, 1.1586027, 3.998
 shape = SubResource("BoxShape3D_i5arm")
 
 [node name="BackUp" type="Camera3D" parent="Node3D/Car"]
+unique_name_in_owner = true
 transform = Transform3D(-1, 2.3443988e-08, -1.3597302e-07, -6.207081e-08, 0.80368036, 0.5950613, 1.2322946e-07, 0.5950613, -0.80368036, 0, 10.878151, -15.0311775)
 
 [node name="Pov" type="Camera3D" parent="Node3D/Car"]
+unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.11648989, 2.6331294, 1.9740963)
 
 [node name="FrontUp" type="Camera3D" parent="Node3D/Car"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.96388656, 0.26631323, 0, -0.26631323, 0.96388656, 0, 6.250476, 7.3055954)
 
 [node name="Node3D" type="Node3D" parent="Node3D/Car"]
@@ -849,7 +858,111 @@ visible = false
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.80277467, 0)
+layers = 13
+use_collision = true
+collision_layer = 5
+collision_mask = 5
 size = Vector3(200, 1, 200)
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 296.0
+offset_right = 40.0
+offset_bottom = 336.0
+
+[node name="ColorRect" type="ColorRect" parent="Control2"]
+layout_mode = 0
+offset_right = 280.0
+offset_bottom = 308.0
+scale = Vector2(1, 0.5599998)
+color = Color(1, 1, 1, 0.19215687)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control2"]
+layout_mode = 0
+offset_right = 280.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control2/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("5_jka67")
+theme_override_font_sizes/font_size = 18
+text = "  drive to loading station"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control2"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 280.0
+offset_bottom = 80.0
+
+[node name="Label" type="Label" parent="Control2/MarginContainer2"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("5_jka67")
+theme_override_font_sizes/font_size = 18
+text = "  Load signals "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control2"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 280.0
+offset_bottom = 120.0
+
+[node name="Label" type="Label" parent="Control2/MarginContainer3"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("5_jka67")
+theme_override_font_sizes/font_size = 18
+text = "  drive to unloading station"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="Control2"]
+layout_mode = 0
+offset_top = 123.0
+offset_right = 280.0
+offset_bottom = 163.0
+
+[node name="Label" type="Label" parent="Control2/MarginContainer4"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("5_jka67")
+theme_override_font_sizes/font_size = 18
+text = " Unload singals"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Control2"]
+wait_time = 2.0
+one_shot = true
+
+[node name="MarginContainer5" type="MarginContainer" parent="Control2"]
+layout_mode = 0
+offset_left = 394.0
+offset_top = -253.0
+offset_right = 674.0
+offset_bottom = -193.0
+
+[node name="Label" type="Label" parent="Control2/MarginContainer5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_jka67")
+theme_override_font_sizes/font_size = 72
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.20641704, 0, 5.898526, 0, 0.47308022, 0, -11.425604, 0, 0.106563844, -0.20556259, -0.025898933, 28.637209)
+use_collision = true
+collision_layer = 5
+collision_mask = 5
+mesh = SubResource("PrismMesh_i0g27")
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="pressed" from="Phone/MarginContainer2/Button" to="Phone" method="_on_button_pressed"]
@@ -874,3 +987,4 @@ size = Vector3(200, 1, 200)
 [connection signal="area_entered" from="Node3D2/CSGBox3D4/SignalsTo" to="Node3D2" method="_on_signals_to_area_entered"]
 [connection signal="area_shape_entered" from="Node3D2/CSGBox3D4/SignalsTo" to="Node3D2" method="_on_signals_to_area_shape_entered"]
 [connection signal="timeout" from="Node3D2/Timer" to="Node3D2" method="_on_timer_timeout"]
+[connection signal="timeout" from="Control2/Timer" to="Node3D2" method="_on_timer_loaded_timeout"]

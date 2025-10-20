@@ -21,7 +21,7 @@ extends VehicleBody3D
 signal outTruck
 signal toTruck
 @export var MAX_STEER = 0.45
-@export var ENGINE_POWER = 9000
+@export var ENGINE_POWER = 6000
 var oncar = false
 var canJoIn = false
 var p 
@@ -41,12 +41,13 @@ func _process(delta: float) -> void:
 func  _physics_process(delta: float) -> void:
 	
 	if oncar == true:
-		steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 100)
-		engine_force = Input.get_axis("down", "up") * ENGINE_POWER * 50
+		steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 2)
+		engine_force = Input.get_axis("down", "up") * ENGINE_POWER * 0.1
 		
-		car.center_of_mass_mode =RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
-		if angular_velocity.length() > 10:
-			angular_velocity = angular_velocity.normalized() * 10
+		
+		car.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
+		#if angular_velocity.length() > 10:
+			#angular_velocity = angular_velocity.normalized() * 10
 	else:
 		pass
 	if Input.is_action_just_pressed("toCar"):

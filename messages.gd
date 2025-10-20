@@ -238,12 +238,12 @@ func _process(delta: float) -> void:
 			pass
 			
 	if messagesopen == 0:
-		if messageblank.get_parent().get_child(1):
+		if messageblank.get_parent().find_child("foo"):
 			messageblank.get_parent().get_child(1).queue_free()
 			print("deleted")
 		else:
-			print("notdeletdd")
-func _on_back_button_pressed() -> void:
+			pass
+func _on_back_button_pressed() -> void:   
 	highcontainer.visible = false
 	messages.visible = false
 	App.visible = true
