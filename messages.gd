@@ -20,6 +20,7 @@ extends MarginContainer
 @onready var messages: Control = $ColorRect/Messages
 
 @onready var App: MarginContainer = self
+var notyet = true
 var messagesGeneated = 0
 var nextmessagepos = 100
 var randomJohn
@@ -45,73 +46,76 @@ var delete = 0
 
 
 func _ready() -> void:
-	timer.start()
-	randomJohn = randi_range(1,4)
-	randommessage = randi_range(0,19)
-	
+	if notyet == false:
+		timer.start()
+		randomJohn = randi_range(1,4)
+		randommessage = randi_range(0,19)
+	else:
+		return
 func _on_timer_timeout() -> void:
-	
-	if randomJohn == 1:
-		if messagesopen == 0:
-			high.visible = true
+	if notyet ==false:
+		
+		if randomJohn == 1:
+			if messagesopen == 0:
+				high.visible = true
 		
 			
-		if messagetohigh == 0:
-			if highused == false:
-				high.position.y = messaageloc
-				messaageloc += 4.955
-		messagetohigh += 1
-		highlabel.text = "john: " + str(messagetohigh) + " New Message"
+			if messagetohigh == 0:
+				if highused == false:
+					high.position.y = messaageloc
+					messaageloc += 4.955
+			messagetohigh += 1
+			highlabel.text = "john: " + str(messagetohigh) + " New Message"
 
-	if randomJohn == 2:
-		if messagesopen == 0:
-			police.visible = true
-		if messagetopolice == 0:
-			if policeused == false:
-				police.position.y = messaageloc
-				messaageloc += 4.955
-			messagetopolice = 1
-		else:
-			messagetopolice += 1
-		policelabel.text = "police : " + str(messagetopolice) + " New Message"
+		if randomJohn == 2:
+			if messagesopen == 0:
+				police.visible = true
+			if messagetopolice == 0:
+				if policeused == false:
+					police.position.y = messaageloc
+					messaageloc += 4.955
+				messagetopolice = 1
+			else:
+				messagetopolice += 1
+			policelabel.text = "police : " + str(messagetopolice) + " New Message"
 		
-	if randomJohn == 3:
-		if messagesopen == 0:
-			smokin.visible = true
-		if messagetosmokin == 0:
-			if smokinused == false:
+		if randomJohn == 3:
+			if messagesopen == 0:
+				smokin.visible = true
+			if messagetosmokin == 0:
+				if smokinused == false:
 				
-				smokin.position.y = messaageloc
-				messaageloc += 4.955
-			messagetosmokin = 1
+					smokin.position.y = messaageloc
+					messaageloc += 4.955
+				messagetosmokin = 1
 			
-		else:
-			messagetosmokin += 1
-		smokinlabel.text = "smokin : " + str(messagetosmokin) + " New Message"
-	if randomJohn == 4:
-		if messagesopen == 0:
-			normal.visible = true
+			else:
+				messagetosmokin += 1
+			smokinlabel.text = "smokin : " + str(messagetosmokin) + " New Message"
+		if randomJohn == 4:
+			if messagesopen == 0:
+				normal.visible = true
 
 		
-		if messagetonormal == 0:
-			if normalused == false:
-				normal.position.y = messaageloc
-				messaageloc += 4.955
-			messagetonormal = 1
+			if messagetonormal == 0:
+				if normalused == false:
+					normal.position.y = messaageloc
+					messaageloc += 4.955
+				messagetonormal = 1
 			
-		else:
-			messagetonormal += 1
-		normallabel.text = "Normal : " + str(messagetonormal) + " New Message"
+			else:
+				messagetonormal += 1
+			normallabel.text = "Normal : " + str(messagetonormal) + " New Message"
 		
 		
-	totalmessage = messagetohigh + messagetonormal + messagetopolice + messagetosmokin
+		totalmessage = messagetohigh + messagetonormal + messagetopolice + messagetosmokin
 	
-	if totalmessage >= 0:
-		pingmessages += 1
+		if totalmessage >= 0:
+			pingmessages += 1
 		
 		
-		labeltext.text = str(pingmessages)
-	_ready()
+			labeltext.text = str(pingmessages)
+		_ready()
 
 
 func _on_home_button_pressed() -> void:
@@ -336,3 +340,7 @@ func _on_police_button_pressed() -> void:
 	App.visible = true
 	messages.visible = true
 	highcontainer.visible = true
+
+
+func _on_tuto_play() -> void:
+	notyet = false

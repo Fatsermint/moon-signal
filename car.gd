@@ -17,7 +17,7 @@ extends VehicleBody3D
 
 
 
-
+var notyet = true
 signal outTruck
 signal toTruck
 @export var MAX_STEER = 0.45
@@ -30,7 +30,7 @@ func _ready() -> void:
 	#right1.scale = Vector3(3,3,3)
 	car.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_AUTO
 	#car.center_of_mass = Vector3(0, 1, 0) 
-	pass
+	
 func _process(delta: float) -> void:
 	p = delta
 	if oncar == true:
@@ -39,37 +39,37 @@ func _process(delta: float) -> void:
 	else:
 		pass
 func  _physics_process(delta: float) -> void:
-	
-	if oncar == true:
-		steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 2)
-		engine_force = Input.get_axis("down", "up") * ENGINE_POWER * 0.1
+	if notyet == false:
+		if oncar == true:
+			steering = move_toward(steering, Input.get_axis("right", "left") * MAX_STEER, delta * 2)
+			engine_force = Input.get_axis("down", "up") * ENGINE_POWER * 0.1
 		
 		
-		car.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
+			car.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
 		#if angular_velocity.length() > 10:
 			#angular_velocity = angular_velocity.normalized() * 10
-	else:
-		pass
-	if Input.is_action_just_pressed("toCar"):
-		print("yay")
-		if oncar == true:
-			back_up.current = false
-			front_up.current = false
-			pov.current = false
-			camera_player.current = true
-			outTruck.emit()
-			oncar = false
-			car.freeze = true
-			return
-		if oncar == false and canJoIn == true:
-			car.freeze = false
-			camera_player.current = false
-			back_up.current = true
-			oncar = true
-			#player.get_parent().remove_child(player)
-			#car.add_child(player)
-			player.visible = false
-			toTruck.emit()
+		else:
+			pass
+		if Input.is_action_just_pressed("toCar"):
+			print("yay")
+			if oncar == true:
+				back_up.current = false
+				front_up.current = false
+				pov.current = false
+				camera_player.current = true
+				outTruck.emit()
+				oncar = false
+				car.freeze = true
+				return
+			if oncar == false and canJoIn == true:
+				car.freeze = false
+				camera_player.current = false
+				back_up.current = true
+				oncar = true
+				#player.get_parent().remove_child(player)
+				#car.add_child(player)
+				player.visible = false
+				toTruck.emit()
 
 	if Input.is_action_just_pressed("1") and oncar == true:
 		back_up.current = false
@@ -100,3 +100,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	canJoIn = false
 	print(body)
+
+
+func _on_tuto_play() -> void:
+	notyet = false
